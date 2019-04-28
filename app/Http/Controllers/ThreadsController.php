@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Reply;
 use App\Thread;
 use Illuminate\Http\Request;
 
@@ -83,5 +84,15 @@ class ThreadsController extends Controller
     public function destroy(Thread $thread)
     {
         //
+    }
+
+
+    public function replies(Request $request, Thread $thread)
+    {
+        $reply = new Reply();
+        $reply->fill($request->all());
+        $reply->save();
+
+        return back();
     }
 }
